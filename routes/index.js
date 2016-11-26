@@ -17,20 +17,24 @@ router.get('/thanks', function(req, res, next){
 router.post('/', function(req, res, next){
     var conn = req.app.locals.connection;
 
+    req.sanitize('lhc').escape();
     req.sanitize('q1').escape();
     req.sanitize('q2').escape();
     req.sanitize('q3').escape();
 
+    var lh = req.body.lhc;
     var q1 = req.body.q1;
     var q2 = req.body.q2;
     var q3 = req.body.q3;
 
+    req.assert('lhc','Must be a valid LH').isValidLh();
     req.assert('q1','Question 1 must be answered').notEmpty();
     req.assert('q2','Question 2 must be answered').notEmpty();
 
     var errors = req.validationErrors();
     if(!errors){
-        conn.query("INSERT into day0(q1,q2,q3) VALUES(?,?,?)", [q1,q2,q3], function(err, result){
+        // Please change me everyday
+        conn.query("INSERT into day2_test(lh,q1,q2,q3) VALUES(?,?,?,?)", [lh,q1,q2,q3], function(err, result){
             if(err){
                 console.log("SQL error: " + err);
                 console.log("SQL Error!!\n");
