@@ -46,4 +46,7 @@ jspm_packages
 
 # Redis DB dump
 dump.rdb
+
+# Databases contents
+data
 # ===== End Node.gitignore =====

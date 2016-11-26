@@ -19,6 +19,7 @@ app.set('view engine', 'ejs');
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap-select/dist/css')); // redirect CSS bs-select
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -31,6 +32,9 @@ app.use(expressValidator({
   customValidators : {
     noWhitespace: function(param) {
       return !(/\s/g.test(param));
+    },
+    isValidLh: function(param) {
+        return (param == 15 || param == 16 || param == 17);
     }
   }
 }));
