@@ -34,7 +34,7 @@ router.post('/', function(req, res, next){
     var errors = req.validationErrors();
     if(!errors){
         // Please change me everyday
-        conn.query("INSERT into day2_test(lh,q1,q2,q3) VALUES(?,?,?,?)", [lh,q1,q2,q3], function(err, result){
+        conn.query("INSERT into day2(lh,q1,q2,q3) VALUES(?,?,?,?)", [lh,q1,q2,q3], function(err, result){
             if(err){
                 console.log("SQL error: " + err);
                 console.log("SQL Error!!\n");
